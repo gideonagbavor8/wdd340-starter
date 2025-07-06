@@ -38,17 +38,18 @@ header,
 nav,
 footer {
   padding: 1rem;
-  background-color: #004080;
-  color: white;
+  /* background-color: #004080; */
+  /* color: white; */
 }
 
 nav ul {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   width: 100%;
+  background-color: black;
 }
 
 nav ul li {
@@ -78,19 +79,18 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #004080;
-  color: white;
+  /* background-color: #004080; */
 }
 
 .siteName a {
-  color: white;
+  color: black;
   font-size: 1.3rem;
   font-weight: bold;
   text-decoration: none;
 }
 
 #tools a {
-  color: white;
+  color: black;
   font-weight: 500;
   text-decoration: none;
 }
@@ -100,14 +100,14 @@ nav a:hover {
 }
 
 .welcome-msg {
-  /* padding: 1rem; */
-  margin-top: 1rem;
+  padding: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .welcome-msg h1 {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: bold;
-  line-height: 1.2;
+  /* line-height: 1.2; */
 }
 
 /* .center-img {
@@ -287,6 +287,10 @@ nav a:hover {
 .upgrade-link:hover {
   color: #0074d9;
   /* text-decoration: underline; */
+}
+
+footer p{
+  color: black;
 }
 
 
