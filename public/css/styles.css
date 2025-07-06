@@ -17,7 +17,7 @@ body {
   padding: 0;
 }
 
-#wrapper{
+#wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,14 +27,16 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-main{
+main {
   /* padding: 1rem 0; */
   flex: 1;
   /* background-color: gray; */
   color: black;
 }
 
-header, nav, footer{
+header,
+nav,
+footer {
   padding: 1rem;
   background-color: #004080;
   color: white;
@@ -49,7 +51,7 @@ nav ul {
   width: 100%;
 }
 
-nav ul li{
+nav ul li {
   flex: 1;
   text-align: center;
 }
@@ -66,7 +68,7 @@ nav ul li:hover {
   font-weight: 500;
 } */
 
-nav a:hover{
+nav a:hover {
   text-decoration: underline;
 }
 
@@ -97,7 +99,18 @@ nav a:hover{
   text-decoration: underline;
 }
 
-.center-img {
+.welcome-msg {
+  /* padding: 1rem; */
+  margin-top: 1rem;
+}
+
+.welcome-msg h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* .center-img {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -105,58 +118,57 @@ nav a:hover{
   margin-top: 2rem;
   max-width: 800px;
   height: auto;
+} */
+
+.center-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
 }
 
 .car-image-wrapper {
   position: relative;
-  width: fit-content;
-  margin: 2rem auto 2rem auto;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .car-overlay {
   position: absolute;
   top: 10%;
-  left: -70px;
-  transform: translate(-10%, 0);
-  background: rgba(255, 255, 255, 0.75);
-  color: #fff;
-  padding: 2rem 2.5rem;
-  border-radius: 16px;
-  min-width: 220px;
-  max-width: 320px;
+  left: 5%;
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.85);
+  color: #004080;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 300px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.7rem;
   backdrop-filter: blur(2px);
+  z-index: 2;
 }
 
-.car-overlay h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #0074d9;
+.car-overlay h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .car-overlay p {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #0074d9;
+  font-size: 1rem;
+  margin: 0.3rem 0;
 }
 
 .car-overlay img {
   margin-top: 1rem;
-  width: 120px;
+  width: 100px;
   height: auto;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .delorean-split {
@@ -165,14 +177,13 @@ nav a:hover{
   gap: 2rem;
   margin-top: 2rem;
   padding: 1rem;
-  align-items: stretch;
 }
 
 .delorean-split article {
-  background-color: rgba(255, 255, 255, 0.95);
+  /* background-color: rgba(255, 255, 255, 0.95); */
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* Text styles for clarity */
@@ -192,9 +203,9 @@ nav a:hover{
   gap: 1rem;
   margin-top: 1rem;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.95);
+  /* background-color: rgba(255, 255, 255, 0.95); */
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .vehicle-gallery h2 {
@@ -216,8 +227,8 @@ nav a:hover{
 }
 
 .vehicle-img {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -229,11 +240,16 @@ nav a:hover{
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+.left-section,
 .right-section {
-  background: #004080;
+  width: 100%;
+}
+
+.right-section {
+  /* background: #004080; */
   border-radius: 12px;
   padding: 2rem 1.5rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+  /* box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10); */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -258,29 +274,6 @@ nav a:hover{
   font-size: 1.1rem;
 }
 
-
-
-
-@media (min-width: 768px) {
-  .delorean-split {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .left-section,
-  .right-section {
-    flex: 1;
-  }
-
-  .left-section {
-    margin-right: 1rem;
-  }
-
-  .right-section {
-    margin-left: 1rem;
-  }
-}
-
 .upgrade-link {
   display: block;
   text-align: center;
@@ -297,27 +290,128 @@ nav a:hover{
 }
 
 
+@media (max-width: 320px) {
+  /* body{
+    margin: 0;
+  } */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (min-width: 768px) {
+  /* Keep nav links horizontal but more touch-friendly */
   nav ul {
+    flex-wrap: wrap;
     justify-content: center;
-    }
-  main {
-    padding: 2rem;
+    gap: 0.25rem;
   }
-  
+
+  nav ul li {
+    flex: none;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    padding: 0.3rem;
+  }
+
+  /* Force upgrade section to remain 2 columns */
+  .vehicle-gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .vehicle-img {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+  }
+
+  .upgrade-link {
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+
+  .car-overlay {
+    position: static;
+    width: 95%;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .car-overlay h2 {
+    font-size: 1.2rem;
+  }
+
+  .delorean-split {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  .right-section {
+    padding: 1rem;
+    font-size: 0.9rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .right-section li {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .siteName a {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 599px) {
+  /* body {
+      margin: 0;
+  } */
+  .vehicle-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+@media (min-width: 600px) {
+  /* body {
+      margin: 0;
+  } */
+  .delorean-split {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .left-section,
+  .right-section {
+    flex: 1;
+  }
+
+  .left-section {
+    margin-right: 1rem;
+  }
+
+  .right-section {
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    margin: 100px;
+    border: 5px solid #004080;
+    border-radius: 8px;
+  }
+  .delorean-split {
+    padding: 2rem;
+    gap: 3rem;
+  }
+
+  .left-section,
+  .right-section {
+    padding: 1.5rem;
+  }
 }
