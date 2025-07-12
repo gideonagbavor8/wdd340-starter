@@ -3,14 +3,15 @@
         {
             "pgOptions": {
                 "ssl": {
-                    "rejectUnauthorized": true
+                    "rejectUnauthorized": true,
+                    "requestCert": false
                 }
             },
             "previewLimit": 50,
             "server": "localhost",
             "driver": "PostgreSQL",
-            "name": "Render.com",
-            "connectString": "postgresql://gideonkomla:milZ7ZhSmpTL7r7UO7FxoaFwaKOk65Nr@dpg-d1jk522li9vc738c3bp0-a.ohio-postgres.render.com/cse340_vs9c"
+            "name": "Render",
+            "connectString": "postgresql://gideonagbavor:hZ8cbI8vcH9z5YClGNniZuNkK02rz8Mc@dpg-d1pdl3ruibrs73dlrqb0-a.ohio-postgres.render.com/assign2db_co3o"
         }
     ]
 }
