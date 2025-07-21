@@ -19,7 +19,7 @@ Util.getNav = async function (req, res, next) {
             "</a>"
         list += "</li>"
     })
-    list += "</li>"
+    list += "</ul>"
     return list
 }
 
