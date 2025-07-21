@@ -33,7 +33,7 @@ Util.buildClassificationGrid = async function (data) {
             grid += '<li>'
             grid += '<a href="/inv/detail/' + vehicle.inv_id
             + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
-            + ' details"><img src="' + vehicle.inv_thumbnail
+            + ' details"><img src="/images/' + vehicle.inv_thumbnail
             + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
             + ' on CSE Motors" /></a>'
             grid += '<div class="namePrice">'
@@ -55,10 +55,33 @@ Util.buildClassificationGrid = async function (data) {
     return grid
 }
 
+Util.buildVehicleDetail = async function (vehicle) {
+  if (!vehicle) return "<p class='notice'>Vehicle not found.</p>"
+  // Use full-size image, not thumbnail
+  let imgPath = vehicle.inv_image.replace(/^vehicles\/vehicles\//, 'vehicles/')
+  return `
+    <div class="vehicle-detail-container">
+      <div class="vehicle-img-wrapper">
+        <img src="/images/${imgPath}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-detail-img" />
+      </div>
+      <div class="vehicle-detail-info">
+        <h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>
+        <p class="vehicle-price"><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
+        <p class="vehicle-mileage"><strong>Mileage:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</p>
+        <p><strong>Description:</strong> ${vehicle.inv_description}</p>
+        <p><strong>Color:</strong> ${vehicle.inv_color}</p>
+      </div>
+    </div>
+  `
+}
+
 //  Middleware For Handling Errors
 //  Wrap other functions in this for
 //  General Error Handling
-Util.handleErrors = fn => (req, res, next) =>
+Util.handleErrors = function (fn) {
+  return function (req, res, next) {
     Promise.resolve(fn(req, res, next)).catch(next)
+  }
+}
 
 module.exports = Util

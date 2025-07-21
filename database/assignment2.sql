@@ -21,8 +21,3 @@ SELECT i.inv_make, i.inv_model, c.classification_name
 FROM inventory i
 INNER JOIN classification c ON i.classification_id = c.classification_id
 WHERE c.classification_name = 'Sport';
-
--- 6. Update image paths to include "/vehicles" in inv_image and inv_thumbnail
-UPDATE inventory
-SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
-    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');

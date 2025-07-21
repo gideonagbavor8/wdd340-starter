@@ -8,6 +8,11 @@ router.use("/css", express.static(__dirname + "public/css"));
 router.use("/js", express.static(__dirname + "public/js"));
 router.use("/images", express.static(__dirname + "public/images"));
 
+router.get("/error", (req, res) => {
+  throw new Error("This is a simulated 500 error.")
+})
+
+
 module.exports = router;
 
 

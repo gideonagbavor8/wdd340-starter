@@ -22,7 +22,7 @@ const utilities = require("./utilities/")
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")  //not at views root
-// app.use(express.static("public"))
+app.use(express.static("public"))
 
 
 
@@ -73,6 +73,13 @@ const port = process.env.PORT || 5500
 // app.listen(port, () => {
 //   console.log(`app listening on ${host}:${port}`)
 // })
+
+app.use((err, req, res, next) => {
+  console.error(err)
+  let message = "Oh no! Something went wrong."
+  let title = "Server Error"
+  res.status(500).render("errors/error", { message, title })
+})
 
 
 app.listen(port, () => {
