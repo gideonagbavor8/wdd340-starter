@@ -293,8 +293,13 @@ footer p{
   color: black;
 }
 
+footer ul{
+  list-style: none;
+}
+
 footer li a{
-  color: white;
+  list-style: none;
+  color: black;
   text-decoration: none;
 }
 
