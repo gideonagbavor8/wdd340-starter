@@ -437,6 +437,203 @@ footer li a:hover {
   color: #222;
 }
 
+
+/* Wrapper block */
+#messages {
+  margin: 1rem 0;
+  padding: 0;
+  font-size: 1.05rem;
+}
+
+/* Base UL styles */
+#messages ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Notice (info) messages */
+#messages ul.notice {
+  background-color: #eef5fb;
+  color: #003366;
+  border: 1px solid #cce0f3;
+}
+
+/* Success messages */
+#messages ul.success {
+  background-color: #e6ffed;
+  color: #145c35;
+  border: 1px solid #aad4b0;
+}
+
+/* Error messages */
+#messages ul.error {
+  background-color: #ffe6e6;
+  color: #990000;
+  border: 1px solid #f5c2c7;
+}
+
+/* Individual message styling */
+#messages li {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#messages li:last-child {
+  border-bottom: none;
+}
+
+.login-form-container {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.login-form-container h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #003366;
+}
+
+.login-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form-container label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.login-form-container input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.login-form-container input:focus {
+  border-color: #007acc;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.15);
+}
+
+.login-form-container button {
+  padding: 0.75rem;
+  background-color: #007acc;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.login-form-container button:hover {
+  background-color: #005e99;
+}
+
+.login-form-container p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.login-form-container a {
+  color: #007acc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-form-container a:hover {
+  text-decoration: underline;
+}
+
+.register-form-container {
+  max-width: 460px;
+  margin: 3rem auto;
+  padding: 2.2rem;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.register-form-container h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #004080;
+}
+
+.register-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form-container label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.register-form-container input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.register-form-container input:focus {
+  border-color: #007acc;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.15);
+}
+
+.register-form-container .password-requirements {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.register-form-container button {
+  padding: 0.8rem;
+  background-color: #007acc;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.register-form-container button:hover {
+  background-color: #005e99;
+}
+
+.password-guidelines {
+  margin-bottom: 8px;
+  padding: 10px;
+  background-color: #f0f4ff;
+  border-left: 5px solid #0077cc;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+  border-radius: 4px;
+}
+
 @media (max-width: 700px) {
   .vehicle-detail-container {
     flex-direction: column;
