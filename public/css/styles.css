@@ -634,6 +634,58 @@ footer li a:hover {
   border-radius: 4px;
 }
 
+/* Style only main content under inventory management page */
+.inventory-management-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-management-container h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.inventory-management-container ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.inventory-management-container ul li {
+  margin: 1rem 0;
+}
+
+.inventory-management-container ul li a {
+  display: inline-block;
+  background-color: #3498db;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.inventory-management-container ul li a:hover {
+  background-color: #2980b9;
+}
+
+.notice {
+  background-color: #eafbea;
+  border: 1px solid #2ecc71;
+  color: #2ecc71;
+  padding: 0.75rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 @media (max-width: 700px) {
   .vehicle-detail-container {
     flex-direction: column;

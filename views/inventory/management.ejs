@@ -1,0 +1,17 @@
+<div class="inventory-management-container">
+    <% if (messages && messages.length> 0) { %>
+        <div class="notice">
+            <% messages.forEach(msg=> { %>
+                <p>
+                    <%= msg %>
+                </p>
+                <% }) %>
+        </div>
+        <% } %>
+
+            <h1>Inventory Management</h1>
+            <ul>
+                <li><a href="/inv/add-classification">Add New Classification</a></li>
+                <li><a href="/inv/add-inventory">Add New Inventory</a></li>
+            </ul>
+</div>

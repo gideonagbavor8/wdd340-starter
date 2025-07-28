@@ -5,16 +5,16 @@ const invCont = {}
 
 // Build inventory by classification view
 invCont.buildByClassificationId = async function (req, res, next) {
-    const classification_id = req.params.classificationId
-    const data = await invModel.getInventoryByClassificationId(classification_id)
-    const grid = await utilities.buildClassificationGrid(data)
-    let nav = await utilities.getNav()
-    const className = data[0].classification_name
-    res.render("./inventory/classification", {
-        title: className + " vehicles",
-        nav,
-        grid,
-    })
+  const classification_id = req.params.classificationId
+  const data = await invModel.getInventoryByClassificationId(classification_id)
+  const grid = await utilities.buildClassificationGrid(data)
+  let nav = await utilities.getNav()
+  const className = data[0].classification_name
+  res.render("./inventory/classification", {
+    title: className + " vehicles",
+    nav,
+    grid,
+  })
 }
 
 // Build vehicle detail view
@@ -26,10 +26,10 @@ invCont.buildDetailView = async function (req, res, next) {
       return res.status(404).render("error", { message: "Vehicle not found" })
     }
     const detailHTML = await utilities.buildVehicleDetail(vehicleData)
-    let nav = await utilities.getNav() // <-- Add this line
+    let nav = await utilities.getNav()
     res.render("inventory/detail", {
       title: `${vehicleData.inv_make} ${vehicleData.inv_model}`,
-      nav, // <-- Pass nav to the view
+      nav,
       detailHTML,
       vehicle: vehicleData
     })
@@ -38,5 +38,15 @@ invCont.buildDetailView = async function (req, res, next) {
   }
 }
 
+// Inventory management view
+invCont.buildManagement = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  res.render("inventory/management", {
+    title: "Inventory Management",
+    nav,
+    messages: req.flash("notice")
+  })
+}
 
+// ✅ Export the controller object
 module.exports = invCont
