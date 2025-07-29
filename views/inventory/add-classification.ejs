@@ -1,32 +1,27 @@
-<div class="inventory-management-container">
-  <% if (message) { %>
-    <div class="notice">
-      <p><%= message %></p>
-    </div>
+<h1>Add New Classification</h1>
+
+<% if (message) { %>
+  <div class="notice">
+    <%= message %>
+  </div>
   <% } %>
 
-  <h1>Add Classification</h1>
-  <form action="/inv/add-classification" method="POST" id="classificationForm">
-    <label for="classification_name">Classification Name</label>
-    <input 
-      type="text" 
-      id="classification_name" 
-      name="classification_name" 
-      required 
-      pattern="^[A-Za-z0-9]+$" 
-      title="No spaces or special characters allowed." 
-    />
-    <button type="submit">Add Classification</button>
-  </form>
-</div>
+    <div class="classification-container">
+          <form id="classificationForm" action="/inv/add-classification" method="POST">
+            <label for="classification_name">Classification Name:</label>
+            <input type="text" name="classification_name" id="classification_name" required pattern="^[A-Za-z0-9]+$"
+              title="No spaces or special characters allowed.">
+            <button type="submit">Add Classification</button>
+          </form>
+    </div>
 
-<!-- <script>
-  document.getElementById("classificationForm").addEventListener("submit", function (e) {
-    const input = document.getElementById("classification_name");
-    const regex = /^[A-Za-z0-9]+$/;
-    if (!regex.test(input.value)) {
-      e.preventDefault();
-      alert("Classification name must not contain spaces or special characters.");
-    }
-  });
-</script> -->
+
+    <script>
+      document.getElementById("classificationForm").addEventListener("submit", function (e) {
+        const value = document.getElementById("classification_name").value;
+        if (!/^[A-Za-z0-9]+$/.test(value)) {
+          e.preventDefault();
+          alert("No spaces or special characters allowed.");
+        }
+      });
+    </script>

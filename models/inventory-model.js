@@ -28,9 +28,46 @@ async function getVehicleById(inv_id) {
     return result.rows[0]
 }
 
+// const pool = require("../database");
+
+async function insertClassification(classification_name) {
+  try {
+    const sql = "INSERT INTO classification (classification_name) VALUES ($1)";
+    return await pool.query(sql, [classification_name]);
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function insertInventory(data) {
+  const sql = `
+    INSERT INTO inventory (
+      inv_make, inv_model, inv_year, inv_miles, inv_price, inv_description,
+      inv_color, inv_image, inv_thumbnail, classification_id
+    )
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+  `;
+  const values = [
+    data.inv_make,
+    data.inv_model,
+    data.inv_year,
+    data.inv_miles,
+    data.inv_price,
+    data.inv_description,
+    data.inv_color,
+    data.inv_image,
+    data.inv_thumbnail,
+    data.classification_id
+  ];
+  return pool.query(sql, values);
+}
+
+
 // Export all functions together
 module.exports = {
     getClassifications,
     getInventoryByClassificationId,
-    getVehicleById
+    getVehicleById,
+    insertClassification,
+    insertInventory
 }
