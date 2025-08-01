@@ -17,7 +17,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
-
+const cookieParser = require("cookie-parser")
 
 
 
@@ -47,13 +47,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-
-
-
-
-
-
-
+app.use(cookieParser())
 
 app.set("view engine", "ejs")
 app.use(expressLayouts)
@@ -61,6 +55,7 @@ app.set("layout", "./layouts/layout")  //not at views root
 app.use(express.static("public"))
 app.use("/account", accountRoute)
 
+// app.use(utilities.checkJWTToken)
 
 
 
@@ -75,7 +70,7 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory Routes
 app.use("/inv", inventoryRoute)
 
-app.use((req, res, next) => {
+app.use(function(req, res, next) {
   res.locals.messages = require("express-messages")(req, res)
   next()
 })
