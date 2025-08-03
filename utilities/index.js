@@ -86,8 +86,8 @@ Util.handleErrors = function (fn) {
 
 Util.buildClassificationList = async function(classification_id = null) {
   const data = await invModel.getClassifications();
-  let list = '<select name="classification_id" id="classification_id" required>';
-  list += "<option value=''>Choose a Classification</option>";
+  let list = '<select name="classification_id" id="classificationList" required>';
+  list += "<option value='' disabled selected>-- Select a Classification--</option>";
   data.rows.forEach(row => {
     list += `<option value="${row.classification_id}"`;
     if (classification_id && row.classification_id == classification_id) {

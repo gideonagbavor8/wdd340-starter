@@ -1,0 +1,9 @@
+<input type="text" name="inv_make" value="<%= inv_make %>" readonly>
+<input type="text" name="inv_model" value="<%= inv_model %>" readonly>
+<input type="text" name="inv_year" value="<%= inv_year %>" readonly>
+<input type="text" name="inv_price" value="<%= inv_price %>" readonly>
+
+<p>Confirm Deletion - The delete is permanent.</p>
+
+<form method="post" action="/inv/delete">
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">

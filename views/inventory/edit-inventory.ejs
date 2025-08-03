@@ -1,11 +1,18 @@
-<h1>Add Vehicle to Inventory</h1>
+<h1>Edit <%= title %>
+</h1>
+
 <% if (message) { %>
     <div class="notice">
         <%= message %>
     </div>
     <% } %>
+
         <div class="inventory-container">
-            <form action="/inv/add-inventory" method="POST" id="inventoryForm">
+            <form action="/inv/update" method="POST" id="inventoryForm">
+
+                <!-- Hidden Field for inv_id -->
+                <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
                 <label for="inv_make">Make:</label>
                 <input type="text" id="inv_make" name="inv_make" required
                     value="<%= typeof inv_make != 'undefined' ? inv_make : '' %>">
@@ -27,8 +34,9 @@
                     value="<%= typeof inv_price != 'undefined' ? inv_price : '' %>">
 
                 <label for="inv_description">Description:</label>
-                <textarea id="inv_description" name="inv_description"
-                    required><%= typeof inv_description != 'undefined' ? inv_description : '' %></textarea>
+                <textarea id="inv_description" name="inv_description" required>
+      <%= typeof inv_description != 'undefined' ? inv_description : '' %>
+    </textarea>
 
                 <label for="inv_color">Color:</label>
                 <input type="text" id="inv_color" name="inv_color" required
@@ -43,8 +51,8 @@
                     value="<%= typeof inv_thumbnail != 'undefined' ? inv_thumbnail : '/images/vehicles/no-image-tn.png' %>">
 
                 <label for="classification_id">Classification:</label>
-                <%- classificationSelect %> <!-- this renders dropdown HTML -->
+                <%- classificationSelect %>
 
-                    <button type="submit">Add Vehicle</button>
+                    <button type="submit">Update Vehicle</button>
             </form>
         </div>

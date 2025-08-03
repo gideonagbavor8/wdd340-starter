@@ -1,17 +1,24 @@
-<div class="inventory-management-container">
-    <% if (messages && messages.length> 0) { %>
-        <div class="notice">
-            <% messages.forEach(msg=> { %>
-                <p>
-                    <%= msg %>
-                </p>
-                <% }) %>
-        </div>
-        <% } %>
+<h1 class="page-title">Inventory Management</h1>
 
-            <h1>Inventory Management</h1>
-            <ul>
-                <li><a href="/inv/add-classification">Add New Classification</a></li>
-                <li><a href="/inv/add-inventory">Add New Inventory</a></li>
-            </ul>
+<div class="action-links">
+    <a href="/inv/add-classification" class="btn">Add New Classification</a> |
+    <a href="/inv/add-inventory" class="btn">Add New Vehicle</a>
 </div>
+
+<h2 class="section-title">Manage Inventory</h2>
+<p class="instruction-text">
+    Select a classification from the list to see the items belonging to that classification.
+</p>
+
+<div class="select-container">
+    <%- classificationSelect %>
+</div>
+
+<table id="inventoryDisplay" class="inventory-table"></table>
+
+<noscript class="noscript-message">
+    JavaScript must be enabled to use this page.
+</noscript>
+
+<!-- Include client-side logic for inventory management -->
+<script src="../../js/inventory.js" defer></script>
