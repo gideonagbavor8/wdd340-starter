@@ -2,13 +2,13 @@
 </h1>
 
 <% if (message) { %>
-    <!-- <div class="notice">
+    <div class="notice">
         <%= message %>
-    </div> -->
+    </div>
     <% } %>
 
         <div class="inventory-container">
-            <form action="/inv/update" method="POST" id="inventoryForm">
+            <form action="/inv/update" method="POST" id="updateForm">
 
                 <!-- Hidden Field for inv_id -->
                 <input type="hidden" name="inv_id" value="<%= inv_id %>">
@@ -30,8 +30,9 @@
                     value="<%= typeof inv_miles != 'undefined' ? inv_miles : '' %>">
 
                 <label for="inv_price">Price:</label>
-                <input type="text" id="inv_price" name="inv_price" required pattern="^\\d+(\\.\\d{1,2})?$"
+                <input type="text" id="inv_price" name="inv_price" required pattern="^(\d+|\d{1,3}(,\d{3})+)(\.\d{1,2})?$"
                     value="<%= typeof inv_price != 'undefined' ? inv_price : '' %>">
+
 
                 <label for="inv_description">Description:</label>
                 <textarea id="inv_description" name="inv_description" required>
@@ -53,6 +54,7 @@
                 <label for="classification_id">Classification:</label>
                 <%- classificationList %>
 
-                    <button type="submit">Update Vehicle</button>
+                <button type="submit" disabled>Update Vehicle</button>
             </form>
+            <script src="/js/inv-update.js"></script>
         </div>

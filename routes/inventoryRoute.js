@@ -4,6 +4,8 @@ const router = new express.Router();
 const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const validation = require("../middleware/validation");
+const inventoryValidate = require("../utilities/inventory-validation")
+
 
 
 
@@ -27,6 +29,14 @@ router.post("/add-inventory",
 );
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+
+// Route to update inventory
+router.post("/update",
+  inventoryValidate.newInventoryRules(),
+  inventoryValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+)
 
 
 // Show delete confirmation view

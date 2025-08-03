@@ -44,6 +44,12 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.use((req, res, next) => {
+  res.locals.message = req.flash("notice")  // Now your EJS view sees "message"
+  next()
+})
+
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -70,10 +76,10 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory Routes
 app.use("/inv", inventoryRoute)
 
-app.use(function(req, res, next) {
-  res.locals.messages = require("express-messages")(req, res)
-  next()
-})
+// app.use(function(req, res, next) {
+//   res.locals.messages = require("express-messages")(req, res)
+//   next()
+// })
 
 
 // File Not Found Route - must be last route in list
