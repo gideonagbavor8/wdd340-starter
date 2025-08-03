@@ -22,13 +22,21 @@ async function getInventoryByClassificationId(classification_id) {
 }
 
 // Get a single vehicle by ID
-async function getVehicleById(inv_id) {
-    const sql = "SELECT * FROM public.inventory WHERE inv_id = $1"
+async function getInventoryById(inv_id) {
+  try {
+    const sql = `
+      SELECT * FROM inventory
+      WHERE inv_id = $1
+    `
     const result = await pool.query(sql, [inv_id])
     return result.rows[0]
+  } catch (error) {
+    throw error
+  }
 }
 
-// const pool = require("../database");
+
+
 
 async function insertClassification(classification_name) {
   try {
@@ -85,7 +93,7 @@ async function deleteInventoryItem(inv_id) {
 module.exports = {
     getClassifications,
     getInventoryByClassificationId,
-    getVehicleById,
+    getInventoryById,
     insertClassification,
     insertInventory,
     deleteInventoryItem

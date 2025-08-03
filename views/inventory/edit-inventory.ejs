@@ -1,10 +1,10 @@
-<h1>Edit <%= title %>
+<h1> <%= title %>
 </h1>
 
 <% if (message) { %>
-    <div class="notice">
+    <!-- <div class="notice">
         <%= message %>
-    </div>
+    </div> -->
     <% } %>
 
         <div class="inventory-container">
@@ -35,8 +35,8 @@
 
                 <label for="inv_description">Description:</label>
                 <textarea id="inv_description" name="inv_description" required>
-      <%= typeof inv_description != 'undefined' ? inv_description : '' %>
-    </textarea>
+                    <%= typeof inv_description != 'undefined' ? inv_description : '' %>
+                </textarea>
 
                 <label for="inv_color">Color:</label>
                 <input type="text" id="inv_color" name="inv_color" required
@@ -51,7 +51,7 @@
                     value="<%= typeof inv_thumbnail != 'undefined' ? inv_thumbnail : '/images/vehicles/no-image-tn.png' %>">
 
                 <label for="classification_id">Classification:</label>
-                <%- classificationSelect %>
+                <%- classificationList %>
 
                     <button type="submit">Update Vehicle</button>
             </form>

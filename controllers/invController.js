@@ -1,5 +1,7 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+// const Util = require("../utilities")
+
 
 
 const invCont = {}
@@ -184,14 +186,17 @@ invCont.editInventoryView = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
   const nav = await utilities.getNav()
   const itemData = await invModel.getInventoryById(inv_id)
-  const classificationSelect = await buildClassificationList(itemData.classification_id)
+  // const classificationSelect = await buildClassificationList(itemData.classification_id)
+  const classificationList = await utilities.buildClassificationList(itemData.classification_id)
+
 
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
 
   res.render("./inventory/edit-inventory", {
     title: "Edit " + itemName,
     nav,
-    classificationSelect,
+    // classificationSelect,
+    classificationList,
     errors: null,
     inv_id: itemData.inv_id,
     inv_make: itemData.inv_make,
