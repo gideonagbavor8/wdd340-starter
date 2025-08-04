@@ -5,8 +5,17 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const validation = require("../middleware/validation");
 const inventoryValidate = require("../utilities/inventory-validation")
+// console.log(invController)
+// Inventory Admin Views and Actions (protected by role middleware)
+router.get("/", utilities.checkAccountType, invController.buildManagementView)
 
-
+router.get("/add-classification", utilities.checkAccountType, invController.buildAddClassification)
+router.post("/add-classification", utilities.checkAccountType, invController.addClassification)
+router.get("/add-inventory", utilities.checkAccountType, invController.buildAddInventory)
+router.post("/add-inventory", utilities.checkAccountType, invController.addInventory)
+router.get("/edit/:invId", utilities.checkAccountType, invController.editInventoryView)
+router.post("/edit/", utilities.checkAccountType, invController.updateInventory)
+router.post("/delete/:invId", utilities.checkAccountType, invController.deleteInventoryItem)
 
 
 // Route to build inventory by classification view

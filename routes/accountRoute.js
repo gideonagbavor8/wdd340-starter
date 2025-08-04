@@ -8,6 +8,7 @@ const regValidate = require("../utilities/account-validation")
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 router.get("/", utilities.handleErrors(accountController.buildAccountManagement))
+router.get("/logout", utilities.handleErrors(accountController.logoutAccount))
 
 
 // POST routes

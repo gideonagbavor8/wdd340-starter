@@ -108,7 +108,7 @@ Util.injectAccountData = (req, res, next) => {
     try {
       const decoded = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
       res.locals.accountData = decoded; // Assuming decoded contains account data
-      console.log("Middleware injected accountData:", res.locals.accountData);
+      // console.log("Middleware injected accountData:", res.locals.accountData);
     } catch (error) {
       console.error("JWT verification error:", error.message);
       res.locals.accountData = null;
@@ -118,6 +118,18 @@ Util.injectAccountData = (req, res, next) => {
   }
   next();
 }
+
+Util.checkAccountType = (req, res, next) => {
+  const accountData = req.session.accountData
+
+  if (accountData && (accountData.account_type === 'Employee' || accountData.account_type === 'Admin')) {
+    return next()
+  }
+
+  req.flash("notice", "Access restricted: Employee or Admin only.")
+  return res.redirect("/account/login")
+}
+
 
 
 
