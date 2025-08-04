@@ -914,6 +914,23 @@ h1 {
   display: block;
 }
 
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.siteName a {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+#tools a {
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
 .notice {
   background-color: #eafbea;
   border: 1px solid #2ecc71;

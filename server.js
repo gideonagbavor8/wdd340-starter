@@ -55,6 +55,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cookieParser())
 
+// Make accountData available everywhere
+app.use(utilities.injectAccountData)
+
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout")  //not at views root
@@ -126,6 +129,11 @@ app.use((err, req, res, next) => {
   let title = "Server Error"
   res.status(500).render("errors/error", { message, title })
 })
+
+
+
+
+
 
 
 app.listen(port, () => {

@@ -89,6 +89,8 @@ async function accountLogin(req, res) {
     if (await bcrypt.compare(account_password, accountData.account_password)) {
       console.log("Password match successful for:", account_email); // Debug log
       delete accountData.account_password;
+      req.session.accountData = accountData
+      console.log("Session accountData:", req.session.accountData)
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 });
       if (process.env.NODE_ENV === 'development') {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });

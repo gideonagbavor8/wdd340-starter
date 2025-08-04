@@ -1,8 +1,10 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
+const jwt = require("jsonwebtoken");
+// reequire("dotenv").config();
 
 // Constructs the nav HTML unordered list
-Util.getNav = async function (req, res, next) {
+Util.getNav = async function () {
     let data = await invModel.getClassifications()
     console.log(data)
     let list = "<ul>"
@@ -99,17 +101,24 @@ Util.buildClassificationList = async function(classification_id = null) {
   return list;
 };
 
-/* ****************************************
- *  Check Login
- * ************************************ */
- Util.checkLogin = (req, res, next) => {
-  if (res.locals.loggedin) {
-    next()
+
+//  Middleware to make accountData available in views
+Util.injectAccountData = (req, res, next) => {
+  if (req.cookies && req.cookies.jwt) {
+    try {
+      const decoded = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
+      res.locals.accountData = decoded; // Assuming decoded contains account data
+      console.log("Middleware injected accountData:", res.locals.accountData);
+    } catch (error) {
+      console.error("JWT verification error:", error.message);
+      res.locals.accountData = null;
+    }
   } else {
-    req.flash("notice", "Please log in.")
-    return res.redirect("/account/login")
+    res.locals.accountData = null;
   }
- }
+  next();
+}
+
 
 
 
