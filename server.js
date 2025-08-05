@@ -36,6 +36,8 @@ app.use(session({
   name: 'sessionId',
 }))
 
+app.use(require('./utilities').injectAccountData);
+
 
 // Express Messages Middleware
 app.use(require("connect-flash")())

@@ -1,0 +1,66 @@
+<% if (message) { %>
+    <div class="flash-message">
+        <%= message %>
+    </div>
+    <% } %>
+
+        <% if (errors.length> 0) { %>
+            <div class="error-box">
+                <ul>
+                    <% errors.forEach(function(error) { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+            <% } %>
+
+                <h1>Update Account</h1>
+
+                <!--  Account Info Update Form -->
+                <form action="/account/update" method="POST" novalidate>
+                    <input type="hidden" name="account_id" value="<%= account.account_id %>" />
+
+                    <label for="account_firstname">First Name:</label>
+                    <input type="text" name="account_firstname" id="account_firstname" required
+                        value="<%= typeof account_firstname !== 'undefined' ? account_firstname : account.account_firstname %>" />
+
+                    <label for="account_lastname">Last Name:</label>
+                    <input type="text" name="account_lastname" id="account_lastname" required
+                        value="<%= typeof account_lastname !== 'undefined' ? account_lastname : account.account_lastname %>" />
+
+                    <label for="account_email">Email:</label>
+                    <input type="email" name="account_email" id="account_email" required
+                        value="<%= typeof account_email !== 'undefined' ? account_email : account.account_email %>" />
+
+                    <input type="submit" value="Update Info" />
+                </form>
+
+                <h3 class="pswd-change">Change Password</h3>
+                <!--  Change Password Form -->
+                <form action="/account/change-password" method="POST" novalidate>
+                    <div class="form-instructions">
+                        <p>
+                            Entering a new password below will <strong>immediately replace</strong> your current password once submitted.
+                            Please make sure your new password meets the following security requirements:
+                        </p>
+                        <ul class="password-guidelines">
+                            At least <strong>8 characters</strong>
+                            Contains at least <strong>one uppercase</strong> and <strong>one lowercase</strong> letter
+                            Includes at least <strong>one number</strong>
+                            Includes at least <strong>one special character</strong> (e.g., ! @ # $ % ^ & *)
+                        </ul>
+                    </div>
+
+                    <input type="hidden" name="account_id" value="<%= account_id %>" />
+
+                    <label for="password">New Password:</label>
+                    <input type="password" name="password" id="password" required />
+                    <!-- <p class="password-hint">
+                        Enter a strong password (min. 8 characters, uppercase, lowercase, numbers, symbols).
+                    </p> -->
+
+                    <input type="submit" value="Change Password" />
+                </form>
+            

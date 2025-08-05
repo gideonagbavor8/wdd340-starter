@@ -1,6 +1,7 @@
 const pool = require("../database/");
 const bcrypt = require("bcrypt"); // Add this at the top
 
+
 // Register new account
 async function registerAccount(account_firstname, account_lastname, account_email, account_password) {
   try {
@@ -29,4 +30,28 @@ async function getAccountByEmail(account_email) {
   }
 }
 
-module.exports = { registerAccount, getAccountByEmail };
+// Get by ID
+async function getAccountById(accountId) {
+  const result = await pool.query("SELECT * FROM account WHERE account_id = $1", [accountId]);
+  return result.rows[0];
+}
+
+// Update info
+async function updateAccountInfo({ account_firstname, account_lastname, account_email, account_id }) {
+  const result = await pool.query(
+    "UPDATE account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4",
+    [account_firstname, account_lastname, account_email, account_id]
+  );
+  return result;
+}
+
+// Update password
+async function updatePassword(account_id, hashedPassword) {
+  const result = await pool.query(
+    "UPDATE account SET password = $1 WHERE account_id = $2",
+    [hashedPassword, account_id]
+  );
+  return result;
+}
+
+module.exports = { registerAccount, getAccountByEmail, getAccountById, updateAccountInfo, updatePassword };

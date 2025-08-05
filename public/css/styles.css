@@ -120,6 +120,108 @@ nav a:hover {
   height: auto;
 } */
 
+
+
+/* Flash & Error Messages */
+.flash-message,
+.error-box {
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.flash-message {
+  background-color: #eaf6ff;
+  border-left: 5px solid #2196f3;
+  color: #0c5460;
+}
+
+.error-box {
+  background-color: #ffe5e5;
+  border-left: 5px solid #d32f2f;
+  color: #761414;
+}
+
+.error-box ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.error-box li {
+  margin-bottom: 4px;
+}
+
+/* Form Container */
+form {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form .password-hint {
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+  background-color: #0275d8;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #025aa5;
+}
+
+.pswd-change {
+  text-align: center;
+  margin: 40px auto;
+  font-size: 1.8rem;
+  font-weight: 600;
+  /* color: #1a1a1a; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .center-img {
   width: 100%;
   height: auto;
@@ -930,6 +1032,13 @@ h1 {
   margin-left: 1rem;
   text-decoration: none;
 }
+
+
+
+
+
+
+
 
 .notice {
   background-color: #eafbea;

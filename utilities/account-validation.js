@@ -106,4 +106,78 @@ validate.checkLoginData = async (req, res, next) => {
 };
 
 
+// Update Account
+validate.updateAccountRules = () => {
+  return [
+    body("firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("First name is required."),
+
+    body("lastname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Last name is required."),
+
+    body("email")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required.")
+  ];
+};
+
+// Change Password
+validate.changePasswordRules = () => {
+  return [
+    body("password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password must be at least 12 characters and include uppercase, lowercase, number, and special character.")
+  ];
+};
+
+
+// Check Update Account Data
+validate.checkUpdateAccountData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const accountData = req.body;
+  if (!errors.isEmpty()) {
+    return res.render("account/update-account", {
+      title: "Update Account",
+      errors: errors.array(),
+      accountData
+    });
+  }
+  next();
+};
+
+// Check Password Change Data
+validate.checkPasswordChange = async (req, res, next) => {
+  const errors = validationResult(req);
+  const accountData = req.body;
+  if (!errors.isEmpty()) {
+    return res.render("account/update-account", {
+      title: "Update Account",
+      errors: errors.array(),
+      accountData
+    });
+  }
+  next();
+};
+
+
+
+
 module.exports = validate
