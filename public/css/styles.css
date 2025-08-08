@@ -987,7 +987,7 @@ h1 {
 
 .inventory-table th {
   background-color: #4CAF50;
-  color: white;
+  /* color: white; */
   font-weight: bold;
 }
 

@@ -91,6 +91,7 @@ invCont.buildAddInventory = async function(req, res) {
     title: "Add Inventory",
     nav,
     classificationSelect,
+    errors: [],
     message: req.flash("message"),
   });
 };
