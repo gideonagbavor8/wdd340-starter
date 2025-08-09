@@ -66,6 +66,8 @@ app.set("layout", "./layouts/layout")  //not at views root
 app.use(express.static("public"))
 app.use("/account", accountRoute)
 
+app.use("/inventory", inventoryRoute);
+
 // app.use(utilities.checkJWTToken)
 
 

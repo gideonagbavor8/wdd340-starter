@@ -1,0 +1,66 @@
+<h1>Inventory Search</h1>
+
+<% if (message) { %>
+    <div class="notice">
+        <%= message %>
+    </div>
+    <% } %>
+
+        <% if (errors && errors.length> 0) { %>
+            <div class="error-message">
+                <% errors.forEach(err=> { %>
+                    <p>
+                        <%= err.msg %>
+                    </p>
+                    <% }) %>
+            </div>
+            <% } %>
+
+                <form method="POST" action="/inventory/search">
+                    <label for="make">Make:</label>
+                    <input type="text" id="make" name="make" value="<%= filters?.make || '' %>"
+                        placeholder="e.g. Tesla">
+
+                    <label for="model">Model:</label>
+                    <input type="text" id="model" name="model" value="<%= filters?.model || '' %>"
+                        placeholder="e.g. Model S">
+
+                    <label for="price">Price (≥):</label>
+                    <input type="number" id="price" name="price" min="0" value="<%= filters?.price || '' %>"
+                        placeholder="e.g. 30000">
+
+                    <button type="submit">Search</button>
+                    <!-- <a href="/inventory/search" class="btn btn-secondary">Clear Filters</a> -->
+
+                </form>
+
+                <% if (filterSummary) { %>
+                    <div class="filter-summary">
+                        <strong>Filters:</strong>
+                        <% if (filters.make) { %><span class="tag">Make: <%= filters.make %></span><% } %>
+                        <% if (filters.model) { %><span class="tag">Model: <%= filters.model %></span><% } %>
+                        <% if (filters.price) { %><span class="tag">Price ≥ <%= filters.price %></span><% } %>
+                    </div>
+                    <% } %>
+
+                        <% if (results && results.length> 0) { %>
+                            <h2>Searched Results</h2>
+                            <div class="results-grid">
+                                <% results.forEach(vehicle=> { %>
+                                    <div class="result-card">
+                                        <h3>
+                                            <%= vehicle.inv_make %>
+                                                <%= vehicle.inv_model %>
+                                        </h3>
+                                        <p><strong>Color:</strong>
+                                            <%= vehicle.inv_color %>
+                                        </p>
+                                        <p><strong>Year:</strong>
+                                            <%= vehicle.inv_year %>
+                                        </p>
+                                        <p><strong>Price:</strong> $<%= vehicle.inv_price.toLocaleString() %>
+                                        </p>
+                                    </div>
+                                    <% }) %>
+                            </div>
+                            <% } %>

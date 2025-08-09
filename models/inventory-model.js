@@ -112,8 +112,41 @@ async function updateInventory(
 }
 
 
+async function searchInventory(filters) {
+  const { make, model, color, year, price } = filters;
+  const conditions = [];
+  const values = [];
 
+  if (make) {
+    values.push(`%${make}%`);
+    conditions.push(`inv_make ILIKE $${values.length}`);
+  }
 
+  if (model) {
+    values.push(`%${model}%`);
+    conditions.push(`inv_model ILIKE $${values.length}`);
+  }
+
+  if (color) {
+    values.push(`%${color}%`);
+    conditions.push(`inv_color ILIKE $${values.length}`);
+  }
+
+  if (year) {
+    values.push(year);
+    conditions.push(`inv_year = $${values.length}`);
+  }
+
+  if (price) {
+    values.push(price);
+    conditions.push(`inv_price >= $${values.length}`);
+  }
+
+  const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
+  const sql = `SELECT * FROM inventory ${whereClause}`;
+
+  return await pool.query(sql, values);
+}
 
 
 // Export all functions together
@@ -125,4 +158,5 @@ module.exports = {
     insertInventory,
     deleteInventoryItem,
     updateInventory,
+    searchInventory
 }

@@ -1,6 +1,7 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 // const Util = require("../utilities")
+const { validationResult } = require("express-validator");
 
 
 
@@ -258,6 +259,118 @@ invCont.updateInventory = async function (req, res, next) {
     })
   }
 }
+
+invCont.searchInventory = async function (req, res) {
+  const nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList();
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.render("inventory/search", {
+      title: "Inventory Search",
+      nav,
+      classificationSelect,
+      errors: errors.array(),
+      filters: req.body,
+      results: null,
+      message: null,
+      filterSummary: null // ✅ Add this to avoid undefined error
+    });
+  }
+
+  try {
+    const filters = req.body;
+    const results = await invModel.searchInventory(filters);
+
+    const summaryParts = [];
+    if (filters.make) summaryParts.push(`Make: ${filters.make}`);
+    if (filters.model) summaryParts.push(`Model: ${filters.model}`);
+    if (filters.color) summaryParts.push(`Color: ${filters.color}`);
+    if (filters.year) summaryParts.push(`Year: ${filters.year}`);
+    if (filters.price) summaryParts.push(`Price ≥ ${filters.price}`);
+
+    const filterSummary = summaryParts.join(", ");
+
+    // Store filters and results in session
+    req.session.searchFilters = filters;
+    req.session.searchResults = results.rows;
+
+    if (results.rows.length === 0) {
+      return res.render("inventory/search", {
+        title: "Inventory Search",
+        nav,
+        classificationSelect,
+        errors: [],
+        filters,
+        results: null,
+        message: "No results found for your search.",
+        filterSummary // ✅ Included here
+      });
+    }
+
+    res.render("inventory/search", {
+      title: "Inventory Search",
+      nav,
+      classificationSelect,
+      errors: [],
+      filters,
+      results: results.rows,
+      message: null,
+      filterSummary // ✅ Included here
+    });
+  } catch (error) {
+    console.error("Search error:", error);
+
+    res.render("inventory/search", {
+      title: "Inventory Search",
+      nav,
+      classificationSelect,
+      errors: [{ msg: "Something went wrong. Please try again." }],
+      filters: req.body,
+      results: null,
+      message: null,
+      filterSummary: null // ✅ Included here too
+    });
+  }
+};
+
+
+invCont.buildSearchView = async function (req, res) {
+  const nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList();
+
+  const filters = req.session.searchFilters || {};
+  const results = req.session.searchResults || null;
+
+  // Build summary if filters exist
+  const summaryParts = [];
+  if (filters.make) summaryParts.push(`Make: ${filters.make}`);
+  if (filters.model) summaryParts.push(`Model: ${filters.model}`);
+  if (filters.color) summaryParts.push(`Color: ${filters.color}`);
+  if (filters.year) summaryParts.push(`Year: ${filters.year}`);
+  if (filters.price) summaryParts.push(`Price ≥ ${filters.price}`);
+  const filterSummary = summaryParts.length ? summaryParts.join(", ") : null;
+
+  res.render("inventory/search", {
+    title: "Inventory Search",
+    nav,
+    classificationSelect,
+    errors: [],
+    filters,
+    results,
+    message: null,
+    filterSummary // ✅ This line prevents the EJS error
+  });
+
+  // Optionally clear session after rendering
+  req.session.searchFilters = null;
+  req.session.searchResults = null;
+};
+
+
+
+
+
 
 
 

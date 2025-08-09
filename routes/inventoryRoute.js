@@ -5,8 +5,14 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const validation = require("../middleware/validation");
 const inventoryValidate = require("../utilities/inventory-validation")
+const { check, validationResult } = require("express-validator");
 // console.log(invController)
-// Inventory Admin Views and Actions (protected by role middleware)
+const searchValidation = require("../utilities/search-validation");
+
+
+
+
+
 router.get("/", utilities.checkAccountType, invController.buildManagementView)
 
 router.get("/add-classification", utilities.checkAccountType, invController.buildAddClassification)
@@ -57,6 +63,16 @@ router.post("/delete", invController.deleteInventoryItem)
 // Build view for editing inventory item
 router.get("/edit/:inv_id",
   utilities.handleErrors(invController.editInventoryView))
+
+router.get("/search", utilities.handleErrors(invController.buildSearchView));
+router.post("/search", searchValidation,
+utilities.handleErrors(invController.searchInventory)
+);
+
+
+// router.get("/search/reset", invController.resetSearch);
+
+
 
 
 module.exports = router;
