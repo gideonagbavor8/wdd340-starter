@@ -329,7 +329,7 @@ invCont.searchInventory = async function (req, res) {
       filters: req.body,
       results: null,
       message: null,
-      filterSummary: null // ✅ Included here too
+      filterSummary: null
     });
   }
 };

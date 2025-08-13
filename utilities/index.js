@@ -35,7 +35,7 @@ Util.buildClassificationGrid = async function (data) {
             grid += '<li>'
             grid += '<a href="/inv/detail/' + vehicle.inv_id
             + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
-            + ' details"><img src="/images/' + vehicle.inv_thumbnail
+            + ' details"><img src="' + vehicle.inv_thumbnail
             + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
             + ' on CSE Motors" /></a>'
             grid += '<div class="namePrice">'
@@ -64,7 +64,7 @@ Util.buildVehicleDetail = async function (vehicle) {
   return `
     <div class="vehicle-detail-container">
       <div class="vehicle-img-wrapper">
-        <img src="/images/${imgPath}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-detail-img" />
+        <img src="${imgPath}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-detail-img" />
       </div>
       <div class="vehicle-detail-info">
         <h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>
